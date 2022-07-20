@@ -272,6 +272,10 @@ from keras.layers.serialization import deserialize_from_json
 from keras.layers.serialization import get_builtin_layer
 from keras.layers.serialization import serialize
 
+# JAX layers.
+from keras.layers.jax.flax_layer import FlaxLayer
+from keras.layers.jax.jax_layer import JaxLayer
+
 
 class VersionAwareLayers:
     """Utility to be used internally to access layers in a V1/V2-aware fashion.

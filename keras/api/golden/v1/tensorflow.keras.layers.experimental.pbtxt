@@ -5,6 +5,14 @@ tf_module {
     mtype: "<type \'type\'>"
   }
   member {
+    name: "FlaxLayer"
+    mtype: "<type \'type\'>"
+  }
+  member {
+    name: "JaxLayer"
+    mtype: "<type \'type\'>"
+  }
+  member {
     name: "RandomFourierFeatures"
     mtype: "<type \'type\'>"
   }

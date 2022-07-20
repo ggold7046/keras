@@ -31,6 +31,8 @@ from keras.layers import pooling
 from keras.layers import regularization
 from keras.layers import reshaping
 from keras.layers import rnn
+from keras.layers.jax import flax_layer
+from keras.layers.jax import jax_layer
 from keras.layers.normalization import batch_normalization
 from keras.layers.normalization import batch_normalization_v1
 from keras.layers.normalization import group_normalization
@@ -84,6 +86,8 @@ ALL_MODULES = (
     preprocessing_normalization,
     string_lookup,
     text_vectorization,
+    flax_layer,
+    jax_layer,
 )
 ALL_V2_MODULES = (
     batch_normalization,

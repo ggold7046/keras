@@ -32,6 +32,8 @@ py_library(
         "//keras/layers/attention",
         "//keras/layers/convolutional",
         "//keras/layers/core",
+        "//keras/layers/jax:flax_layer",
+        "//keras/layers/jax:jax_layer",
         "//keras/layers/locally_connected",
         "//keras/layers/merging",
         "//keras/layers/normalization",
