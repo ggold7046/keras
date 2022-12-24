@@ -1338,24 +1338,33 @@ class DataHandler:
     @contextlib.contextmanager
     def catch_stop_iteration(self):
         """Catches errors when an iterator runs out of data."""
-        try:
-            yield
-            self.sync()
-        except (StopIteration, tf.errors.OutOfRangeError):
-            if self._inferred_steps is None:
-                self._inferred_steps = self._current_step
-            else:
-                self._insufficient_data = True
-                total_epochs = self._epochs - self._initial_epoch
-                logging.warning(
-                    "Your input ran out of data; interrupting training. "
-                    "Make sure that your dataset or generator can generate at "
-                    "least `steps_per_epoch * epochs` batches (in this case, "
-                    "{} batches). You may need to use the repeat() function "
-                    "when building your dataset.".format(
-                        total_epochs * self._inferred_steps
+
+        if getattr(self._model, "_preemption_handler", None):
+            preemption_checkpoint_scope = (
+                self._model._preemption_handler._watch_error_scope
+            )
+        else:
+            preemption_checkpoint_scope = contextlib.suppress
+
+        with preemption_checkpoint_scope():
+            try:
+                yield
+                self.sync()
+            except (StopIteration, tf.errors.OutOfRangeError):
+                if self._inferred_steps is None:
+                    self._inferred_steps = self._current_step
+                else:
+                    self._insufficient_data = True
+                    total_epochs = self._epochs - self._initial_epoch
+                    logging.warning(
+                        "Your input ran out of data; interrupting training. "
+                        "Make sure that your dataset or generator can generate "
+                        "at least `steps_per_epoch * epochs` batches (in this "
+                        "case, {} batches). You may need to use the repeat() "
+                        "function when building your dataset.".format(
+                            total_epochs * self._inferred_steps
+                        )
                     )
-                )
 
     def steps(self):
         """Yields steps for the current epoch."""
