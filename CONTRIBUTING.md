@@ -1,4 +1,4 @@
-## How to contribute code
+## How to contribute a code
 
 Follow these steps to submit your code contribution.
 
