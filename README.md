@@ -7,7 +7,7 @@ Read the documentation at [keras.io](https://keras.io/).
 
 ## About Keras
 
-Keras is a deep learning API written in Python,
+Keras is a deep learning API written in  Python,
 running on top of the machine learning platform [TensorFlow](https://github.com/tensorflow/tensorflow).
 It was developed with a focus on enabling fast experimentation.
 *Being able to go from idea to result as quickly as possible is key to doing good research.*
